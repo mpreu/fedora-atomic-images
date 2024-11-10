@@ -1,0 +1,18 @@
+[Unit]
+Description=Container running mitmproxy
+
+[Container]
+Image=docker.io/mitmproxy/mitmproxy:11.0.0
+Exec=mitmdump
+PublishPort=3128:8080
+Volume=/etc/mitmproxy/config.yaml:/home/mitmproxy/.mitmproxy/config.yaml
+Network=podman
+# Interactive shell needed as of now to get working log output.
+PodmanArgs=-it
+
+[Service]
+Restart=always
+
+[Install]
+# Start by default on boot.
+WantedBy=multi-user.target default.target

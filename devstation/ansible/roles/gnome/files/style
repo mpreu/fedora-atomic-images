@@ -1,0 +1,7 @@
+# Set small icon size for file browser
+[org/gnome/nautilus/icon-view]
+default-zoom-level='small'
+
+# Add minimize, maximize buttons to toolbars
+[org/gnome/desktop/wm/preferences]
+button-layout='appmenu:minimize,maximize,close'

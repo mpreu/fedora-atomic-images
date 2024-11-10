@@ -1,0 +1,7 @@
+---
+- name: Keep environment variables with sudo
+  become: true
+  ansible.builtin.copy:
+    src: keep-env
+    dest: /etc/sudoers.d/keep-env
+    mode: 0440

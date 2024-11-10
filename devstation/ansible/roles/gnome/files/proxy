@@ -1,0 +1,12 @@
+[system/proxy]
+mode='manual'
+
+[system/proxy/http]
+host='10.88.0.1'
+port=3128
+enabled=true
+
+[system/proxy/https]
+host='10.88.0.1'
+port=3128
+enabled=true

@@ -1,0 +1,15 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+    - import_role:
+        name: packages
+    - import_role:
+        name: mitmproxy
+    - import_role:
+        name: rpm-ostree
+    - import_role:
+        name: flatpak
+    - import_role:
+        name: gnome
+    - import_role:
+        name: sudo
