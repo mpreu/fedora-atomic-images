@@ -14,21 +14,6 @@
     remote: "{{ item.remote }}"
   loop: "{{ flatpak_install }}"
 
-- name: Install flatpak update service
-  become: true
-  ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: /etc/systemd/system/
-  loop:
-    - flatpak-update.service
-    - flatpak-update.timer
-
-- name: Enable flatpak update service
-  become: true
-  ansible.builtin.systemd_service:
-    name: flatpak-update.timer
-    enabled: true
-
 - name: Set proxy in flatpak-system-helper service
   become: true
   block:
