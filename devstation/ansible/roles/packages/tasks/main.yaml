@@ -1,0 +1,6 @@
+- name: Install additional packages
+  become: yes
+  community.general.rpm_ostree_pkg:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages_install }}"

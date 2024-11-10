@@ -1,0 +1,20 @@
+---
+# Packages.
+packages_install:
+  - numix-gtk-theme
+  - numix-icon-theme-circle
+  - git
+  - corkscrew
+  - davfs2
+  - zsh
+
+# Flatpak.
+flatpak_remotes:
+  - name: flathub
+    url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+flatpak_install:
+  - package: com.mattjakeman.ExtensionManager
+    remote: flathub
+  - package: org.keepassxc.KeePassXC
+    remote: flathub

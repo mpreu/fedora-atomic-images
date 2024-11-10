@@ -1,0 +1,12 @@
+- name: Create rpm-ostree proxy configuration
+  block:
+    - name: Create rpm-ostreed systemd config dir
+      become: true
+      file:
+        path: /etc/systemd/system/rpm-ostreed.service.d
+        state: directory
+    - name: Create rpm-ostreed.service proxy settings file
+      become: true
+      copy:
+        src: proxy.conf
+        dest: /etc/systemd/system/rpm-ostreed.service.d/proxy.conf

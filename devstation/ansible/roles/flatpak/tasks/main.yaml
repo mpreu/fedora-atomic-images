@@ -1,0 +1,42 @@
+- name: Add flatpak remotes
+  become: true
+  community.general.flatpak_remote:
+    name: "{{ item.name }}"
+    state: present
+    flatpakrepo_url: "{{ item.url }}"
+  loop: "{{ flatpak_remotes }}"
+
+- name: Add flatpaks
+  become: true
+  community.general.flatpak:
+    name: "{{ item.package }}"
+    state: present
+    remote: "{{ item.remote }}"
+  loop: "{{ flatpak_install }}"
+
+- name: Install flatpak update service
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /etc/systemd/system/
+  loop:
+    - flatpak-update.service
+    - flatpak-update.timer
+
+- name: Enable flatpak update service
+  become: true
+  ansible.builtin.systemd_service:
+    name: flatpak-update.timer
+    enabled: true
+
+- name: Set proxy in flatpak-system-helper service
+  become: true
+  block:
+    - name: Create systemd drop-in directory
+      ansible.builtin.file:
+        path: /etc/systemd/system/flatpak-system-helper.service.d
+        state: directory
+    - name: Copy systemd drop-in config file
+      ansible.builtin.copy:
+        src: proxy.conf
+        dest: /etc/systemd/system/flatpak-system-helper.service.d/proxy.conf

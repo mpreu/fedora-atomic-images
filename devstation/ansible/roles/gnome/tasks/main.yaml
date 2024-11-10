@@ -1,0 +1,22 @@
+---
+- name: Install additional packages
+  become: true
+  community.general.rpm_ostree_pkg:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - dconf-editor
+    - gnome-tweak-tool
+
+- name: Set up dconf user profile
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /etc/dconf/db/local.d/{{ item }}
+  loop:
+    - input
+    - keybindings
+    - proxy
+    - session
+    - style
+    - theme
