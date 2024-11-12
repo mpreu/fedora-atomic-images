@@ -6,8 +6,6 @@
     - import_role:
         name: mitmproxy
     - import_role:
-        name: rpm-ostree
-    - import_role:
         name: flatpak
     - import_role:
         name: gnome
@@ -15,3 +13,5 @@
         name: sudo
     - import_role:
         name: doh
+    - import_role:
+        name: systemd
