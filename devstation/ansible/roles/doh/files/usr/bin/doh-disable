@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -e
+
+function reset_systemd_resolved() {
+    rm -f /etc/systemd/resolved.conf.d/00-dns-servers.conf
+    rm -f /etc/systemd/resolved.conf.d/01-stub-disable.conf
+}
+
+function reset_nm_dns_config() {
+    rm -f /etc/NetworkManager/conf.d/00-dns.conf
+}
+
+reset_systemd_resolved
+reset_nm_dns_config
+
+systemctl restart systemd-resolved.service
+systemctl restart NetworkManager.service
