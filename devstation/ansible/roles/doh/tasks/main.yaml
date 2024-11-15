@@ -1,12 +1,19 @@
+- name: Copy /usr content
+  become: true
+  ansible.builtin.copy:
+    src: usr/
+    dest: /usr/
+
 - name: Copy config files
   become: true
   ansible.builtin.copy:
     src: etc/
     dest: /etc/
 
-- name: Symlink podman quadlet
-  become: true
+- name: Add executable permissions to scripts
   file:
-    path: /etc/containers/systemd/dnscrypt-proxy.container
-    src: /etc/dnscrypt-proxy/dnscrypt-proxy.container
-    state: link
+    dest: "{{ item }}"
+    mode: a+x
+  loop:
+    - /usr/bin/doh-enable
+    - /usr/bin/doh-disable

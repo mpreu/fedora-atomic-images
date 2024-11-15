@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -e
+
+doh_share_files=/usr/share/doh
+
+function disable_systemd_dns_stub() {
+    local config_dir=/etc/systemd/resolved.conf.d
+    mkdir -p $config_dir
+
+    cp -f ${doh_share_files}/resolved/00-dns-servers.conf $config_dir/
+    cp -f ${doh_share_files}/resolved/01-stub-disable.conf $config_dir/
+}
+
+function enable_nm_systemd_resolved() {
+    local config_dir=/etc/NetworkManager/conf.d
+    mkdir -p $config_dir
+
+    cp -f ${doh_share_files}/NetworkManager/00-dns.conf $config_dir/
+}
+
+disable_systemd_dns_stub
+enable_nm_systemd_resolved
+
+systemctl restart systemd-resolved.service
+systemctl restart NetworkManager.service
