@@ -1,25 +1,18 @@
-- name: Create /etc/mitmproxy
+- name: Copy /usr content
   become: true
-  file:
-    path: /etc/mitmproxy
-    state: directory
+  ansible.builtin.copy:
+    src: usr/
+    dest: /usr/
 
 - name: Copy config files
   become: true
   ansible.builtin.copy:
-    src: ./
-    dest: /etc/mitmproxy/
+    src: etc/
+    dest: /etc/
 
 - name: Symlink config file
   become: true
   file:
     path: /etc/mitmproxy/config.yaml
-    src: /etc/mitmproxy/vbox-host.yaml
-    state: link
-
-- name: Symlink podman quadlet
-  become: true
-  file:
-    path: /etc/containers/systemd/mitmproxy.container
-    src: /etc/mitmproxy/mitmproxy.container
+    src: /etc/mitmproxy/vbox.yaml
     state: link
