@@ -1,5 +1,0 @@
-- name: Copy systemd configurations
-  become: true
-  ansible.builtin.copy:
-    src: etc/
-    dest: /etc/
