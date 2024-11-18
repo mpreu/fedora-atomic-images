@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+
+config_dir=/etc/systemd/system.conf.d
+
+rm -f $config_dir/00-proxy.conf
+
+# Reload systemd configuration.
+systemctl daemon-reexec

@@ -10,6 +10,14 @@
     src: etc/
     dest: /etc/
 
+- name: Add executable permissions to scripts
+  file:
+    dest: "{{ item }}"
+    mode: a+x
+  loop:
+    - /usr/bin/mitmproxy-enable
+    - /usr/bin/mitmproxy-disable
+
 - name: Symlink config file
   become: true
   file:
