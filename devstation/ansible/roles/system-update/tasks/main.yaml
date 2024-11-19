@@ -1,0 +1,5 @@
+- name: Copy /usr content
+  become: true
+  ansible.builtin.copy:
+    src: usr/
+    dest: /usr/
