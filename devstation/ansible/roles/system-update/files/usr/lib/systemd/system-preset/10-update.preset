@@ -1,0 +1,2 @@
+enable rpm-ostreed-automatic.timer
+enable flatpak-update-system.timer
