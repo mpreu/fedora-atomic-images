@@ -3,3 +3,31 @@
   ansible.builtin.copy:
     src: usr/
     dest: /usr/
+
+- name: Ensure systemd directories
+  become: yes
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - /usr/lib/systemd/system/timers.target.wants
+    - /usr/lib/systemd/user/timers.target.wants
+
+- name: Enable default system systemd timers
+  become: true
+  ansible.builtin.file:
+    path: /usr/lib/systemd/system/timers.target.wants/{{ item }}
+    src: ../{{ item }}
+    state: link
+  loop:
+    - rpm-ostreed-automatic.timer
+    - flatpak-update-system.timer
+
+- name: Enable default user systemd timers
+  become: true
+  ansible.builtin.file:
+    path: /usr/lib/systemd/user/timers.target.wants/{{ item }}
+    src: ../{{ item }}
+    state: link
+  loop:
+    - flatpak-update-user.timer
