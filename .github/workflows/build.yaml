@@ -4,14 +4,16 @@ on:
     branches:
       - main
     paths-ignore:
-      - '*'
+      - "*"
       - .github/**
   push:
     branches:
       - main
     paths-ignore:
-      - '*'
+      - "*"
       - .github/**
+  schedule:
+    - cron: "00 06 * * *" # Build at 06:00 UTC every day.
   workflow_dispatch:
 
 concurrency:
@@ -28,7 +30,7 @@ env:
 jobs:
   build_push:
     name: Build and push image
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
 
     permissions:
       contents: read
@@ -67,8 +69,7 @@ jobs:
           tags: |
             ${{ steps.vars.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args:
-            SOURCE_TAG=${{ env.MAJOR_VERSION }}
+          build-args: SOURCE_TAG=${{ env.MAJOR_VERSION }}
           oci: true
 
       - name: Login to GitHub Container Registry
@@ -91,3 +92,13 @@ jobs:
           registry: ${{ env.IMAGE_REGISTRY }}
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
+
+  keepalive:
+    name: Keepalive Workflow
+    if: ${{ github.event_name == 'schedule' }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gautamkrishnar/keepalive-workflow@v2
