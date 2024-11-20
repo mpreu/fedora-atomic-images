@@ -14,8 +14,8 @@ PodmanArgs=-it
 Restart=always
 # Extend timeout for image pulling.
 TimeoutStartSec=120
-ExecStartPost=/usr/bin/mitmproxy-enable
-ExecStopPost=/usr/bin/mitmproxy-disable
+ExecStartPost=/usr/lib/mitmproxy/enable
+ExecStopPost=/usr/lib/mitmproxy/disable
 
 [Install]
 # Start by default on boot.

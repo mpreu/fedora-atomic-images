@@ -15,8 +15,8 @@
     dest: "{{ item }}"
     mode: a+x
   loop:
-    - /usr/bin/mitmproxy-enable
-    - /usr/bin/mitmproxy-disable
+    - /usr/lib/mitmproxy/enable
+    - /usr/lib/mitmproxy/disable
 
 - name: Symlink config file
   become: true
