@@ -17,8 +17,8 @@ Network=podman
 Restart=always
 # Extend timeout for image pulling.
 TimeoutStartSec=120
-ExecStartPre=/usr/bin/doh-enable
-ExecStopPost=/usr/bin/doh-disable
+ExecStartPre=/usr/lib/dnscrypt-proxy/enable
+ExecStopPost=/usr/lib/dnscrypt-proxy/disable
 
 [Install]
 # Start by default on boot.

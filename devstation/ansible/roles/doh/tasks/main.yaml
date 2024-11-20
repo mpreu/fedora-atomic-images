@@ -15,5 +15,5 @@
     dest: "{{ item }}"
     mode: a+x
   loop:
-    - /usr/bin/doh-enable
-    - /usr/bin/doh-disable
+    - /usr/lib/dnscrypt-proxy/enable
+    - /usr/lib/dnscrypt-proxy/disable
