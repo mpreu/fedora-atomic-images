@@ -4,10 +4,10 @@ Description=Container running Squid
 [Container]
 Image=ghcr.io/mpreu/squid:5.9
 PublishPort=3128:3128
-Volume=/etc/squid/squid.conf:/etc/squid/squid.conf
-Volume=/etc/squid/direct.conf:/etc/squid/direct.conf
-Volume=/etc/squid/proxy.conf:/etc/squid/proxy.conf
-Volume=/etc/squid/forwarding.txt:/etc/squid/forwarding.txt
+Volume=/etc/squid/squid.conf:/etc/squid/squid.conf:z
+Volume=/etc/squid/direct.conf:/etc/squid/direct.conf:z
+Volume=/etc/squid/proxy.conf:/etc/squid/proxy.conf:z
+Volume=/etc/squid/forwarding.txt:/etc/squid/forwarding.txt:z
 Network=podman
 
 [Service]
