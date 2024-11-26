@@ -4,7 +4,10 @@ Description=Container running Squid
 [Container]
 Image=ghcr.io/mpreu/squid:5.9
 PublishPort=3128:3128
-Volume=/etc/squid:/etc/squid:ro,z
+Volume=/etc/squid/squid.conf:/etc/squid/squid.conf
+Volume=/etc/squid/direct.conf:/etc/squid/direct.conf
+Volume=/etc/squid/proxy.conf:/etc/squid/proxy.conf
+Volume=/etc/squid/forwarding.txt:/etc/squid/forwarding.txt
 Network=podman
 
 [Service]
@@ -13,4 +16,3 @@ Restart=always
 TimeoutStartSec=120
 ExecStartPost=/usr/lib/squid/enable
 ExecStopPost=/usr/lib/squid/disable
-
