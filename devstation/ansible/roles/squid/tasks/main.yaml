@@ -1,0 +1,26 @@
+- name: Copy /usr content
+  become: true
+  ansible.builtin.copy:
+    src: usr/
+    dest: /usr/
+
+- name: Copy config files
+  become: true
+  ansible.builtin.copy:
+    src: etc/
+    dest: /etc/
+
+- name: Add executable permissions to scripts
+  file:
+    dest: "{{ item }}"
+    mode: a+x
+  loop:
+    - /usr/lib/squid/enable
+    - /usr/lib/squid/disable
+
+- name: Symlink config file
+  become: true
+  file:
+    path: /etc/squid/squid.conf
+    src: /etc/squid/direct.conf
+    state: link

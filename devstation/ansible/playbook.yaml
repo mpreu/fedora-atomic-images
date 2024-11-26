@@ -4,9 +4,7 @@
     - import_role:
         name: packages
     - import_role:
-        name: mitmproxy
-    # - import_role:
-    #     name: flatpak
+        name: squid
     - import_role:
         name: gnome
     - import_role:

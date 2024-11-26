@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -e
+
+share_files=/usr/share/squid
+config_dir=/etc/systemd/system.conf.d
+
+mkdir -p $config_dir
+cp -f $share_files/systemd/system.conf.d/00-proxy.conf $config_dir/
+
+# Reload systemd configuration.
+systemctl daemon-reexec
