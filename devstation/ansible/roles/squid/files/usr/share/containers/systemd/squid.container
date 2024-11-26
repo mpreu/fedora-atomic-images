@@ -14,6 +14,3 @@ TimeoutStartSec=120
 ExecStartPost=/usr/lib/squid/enable
 ExecStopPost=/usr/lib/squid/disable
 
-[Install]
-# Start by default on boot.
-WantedBy=multi-user.target default.target
