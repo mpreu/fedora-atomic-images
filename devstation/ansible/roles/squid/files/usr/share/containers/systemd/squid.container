@@ -1,0 +1,19 @@
+[Unit]
+Description=Container running Squid
+
+[Container]
+Image=ghcr.io/mpreu/squid:5.9
+PublishPort=3128:3128
+Volume=/etc/squid:/etc/squid
+Network=podman
+
+[Service]
+Restart=always
+# Extend timeout for image pulling.
+TimeoutStartSec=120
+ExecStartPost=/usr/lib/squid/enable
+ExecStopPost=/usr/lib/squid/disable
+
+[Install]
+# Start by default on boot.
+WantedBy=multi-user.target default.target

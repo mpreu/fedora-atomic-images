@@ -1,7 +1,7 @@
 [Unit]
 Description=Container running dnscrypt-proxy
-Requires=mitmproxy.service
-After=mitmproxy.service
+Requires=squid.service
+After=squid.service
 
 [Container]
 Image=ghcr.io/klutchell/dnscrypt-proxy:2.1.5
