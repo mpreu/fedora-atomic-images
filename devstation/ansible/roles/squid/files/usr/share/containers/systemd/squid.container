@@ -4,7 +4,7 @@ Description=Container running Squid
 [Container]
 Image=ghcr.io/mpreu/squid:5.9
 PublishPort=3128:3128
-Volume=/etc/squid:/etc/squid
+Volume=/etc/squid:/etc/squid:ro,z
 Network=podman
 
 [Service]
