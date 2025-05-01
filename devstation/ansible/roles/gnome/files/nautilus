@@ -1,0 +1,8 @@
+# Set small icon size.
+[org/gnome/nautilus/icon-view]
+default-zoom-level='small'
+
+# Set general preferences.
+[org/gnome/nautilus/preferences]
+default-folder-viewer='list-view'
+date-time-format='detailed'
