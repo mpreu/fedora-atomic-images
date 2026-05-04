@@ -1,4 +1,0 @@
-mode:
-  - regular
-ignore_hosts:
-  - '(.)*'
