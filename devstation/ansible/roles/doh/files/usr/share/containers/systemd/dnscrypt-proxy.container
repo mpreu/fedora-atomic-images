@@ -4,7 +4,7 @@ Requires=squid.service
 After=squid.service
 
 [Container]
-Image=ghcr.io/klutchell/dnscrypt-proxy:2.1.5
+Image=ghcr.io/klutchell/dnscrypt-proxy:2.1.15
 PublishPort=53:53/tcp
 PublishPort=53:53/udp
 Volume=/etc/dnscrypt-proxy/dnscrypt-proxy.toml:/config/dnscrypt-proxy.toml

@@ -1,5 +1,5 @@
 # SOURCE_TAG is the used image version.
-ARG SOURCE_TAG="43"
+ARG SOURCE_TAG="44"
 FROM quay.io/fedora-ostree-desktops/silverblue:${SOURCE_TAG}
 # FROM quay.io/fedora/fedora-silverblue:${SOURCE_TAG}
 
