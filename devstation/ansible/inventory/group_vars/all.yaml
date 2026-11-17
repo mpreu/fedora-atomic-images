@@ -5,8 +5,6 @@ packages_install:
   - davfs2
   - foot
   - git
-  - numix-gtk-theme
-  - numix-icon-theme-circle
   - tmux
   - vim
   - zsh
